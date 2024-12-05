@@ -1,0 +1,91 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Malimali</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="../../static/landing%20page%201/assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../../static/landing%20page%201/css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+            {% endfor %}
+        {% endif %}
+{#        hide the rest of the other content#}
+        {% block content %}
+        {% endblock %}
+
+
+
+        <!-- Footer-->
+        <footer style="background-color: #f8f9fa; padding: 20px 0; font-family: 'Poppins', sans-serif; color: #333; border-top: 1px solid #ddd;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; flex-wrap: wrap;">
+
+    <!-- Logo and About Section -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h4 style="font-size: 1.2rem; margin-bottom: 10px;">MaliMali</h4>
+      <p style="font-size: 0.9rem; line-height: 1.6;">
+        MaliMali is a vibrant platform that makes item exchange easy, sustainable, and fun! Join us in building a community-driven marketplace where value is traded and connections are made.
+      </p>
+    </div>
+
+    <!-- Navigation Links -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h4 style="font-size: 1.2rem; margin-bottom: 10px;">Quick Links</h4>
+      <ul style="list-style: none; padding: 0; font-size: 0.9rem; line-height: 1.6;">
+        <li><a href="{% url 'home' %}" style="text-decoration: none; color: #333;">Home</a></li>
+        <li><a href="{% url 'home' %}" style="text-decoration: none; color: #333;">Products</a></li>
+        <li><a href="#" style="text-decoration: none; color: #333;">Vendors</a></li>
+        <li><a href="#" style="text-decoration: none; color: #333;">Contact Us</a></li>
+        <li><a href="#" style="text-decoration: none; color: #333;">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media and Contact -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h4 style="font-size: 1.2rem; margin-bottom: 10px;">Follow Us</h4>
+      <p style="font-size: 0.9rem;">Stay connected and follow us on our social media channels:</p>
+      <div>
+        <a href="#" style="margin-right: 10px;">
+          <img src="https://img.icons8.com/ios-glyphs/30/333333/facebook.png" alt="Facebook" style="width: 24px;">
+        </a>
+        <a href="#" style="margin-right: 10px;">
+          <img src="https://img.icons8.com/ios-glyphs/30/333333/instagram-new.png" alt="Instagram" style="width: 24px;">
+        </a>
+        <a href="#" style="margin-right: 10px;">
+          <img src="https://img.icons8.com/ios-glyphs/30/333333/twitter.png" alt="Twitter" style="width: 24px;">
+        </a>
+        <a href="#">
+          <img src="https://img.icons8.com/ios-glyphs/30/333333/linkedin.png" alt="LinkedIn" style="width: 24px;">
+        </a>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div style="flex-basis: 100%; text-align: center; margin-top: 20px; font-size: 0.9rem;">
+      <p>&copy; 2024 MaliMali. All Rights Reserved. | Designed with 💖 by MaliMali Team.</p>
+    </div>
+
+  </div>
+</footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="../../static/landing%20page%201/js/scripts.js"></script>
+    </body>
+</html>

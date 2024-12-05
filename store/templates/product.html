@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>About me</title>
+    </head>
+    <body>
+    <div class="container">
+        <br>
+        <div class="card mb-3" >
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="..." style="max-height: 200px; object-fit: cover;">
+
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p>Price : {{ product.price }}</p>
+                        <br>
+                        <button href="{% url 'home' %}" class="btn-btn-secondary">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+    </body>
+    </html>
+
+{% endblock %}
+
