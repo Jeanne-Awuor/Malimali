@@ -24,12 +24,39 @@
                         <p>Price : {{ product.price }}</p>
                         <br>
                         <button href="{% url 'home' %}" class="btn-btn-secondary">Back</button>
+                        <button type="button" value="{{ product.id }}" id="add-cart" class= "btn-btn-secondary" > Add to cart</button>
                     </div>
                 </div>
             </div>
         </div>
         <br><br><br>
     </div>
+    <script>
+{#    Check if button is pressed#}
+    $(document).on('click','#add-cart',function(e){
+        e.preventDefault();
+        $.ajax({
+            type : 'post',
+            url : '{% url 'cart_add'%}',
+            data :{
+                product_id : $('#add-cart').val(),
+                csrfmiddlewaretoken : '{{ csrf_token }}',
+                action : 'post'
+            },
+            success: function (json){
+                console.log(json)
+            },
+
+             error:function (xhr,errmsg,err){
+
+             }
+            }
+
+        )
+    });
+
+
+    </script>
     </body>
     </html>
 

@@ -2,9 +2,17 @@
 
 An ecommerce platform where users can exchange goods for goods; just like that neighbourhood _MALIMALI_ guy!
 
-This is an experience like no other;view,upload,agree and exchange all under one roof. No money neeeded.
+This is an experience like no other;view,upload,agree and exchange all under one roof. 
+
+Malimali thrives on the power of trade. Goods for goods, just like in the good old days—no monetary exchange required.
 
 You no longer have to wait for the _MALIMALI_ guy to come around anymore,just go to **Malimali** and exchange your goods instantly.
+
+### Tech Stack
+- **Backend**: Django
+- **Frontend**: HTML, CSS, Bootstrap
+- **Database**: SQLite
+
 
 ### General Steps followed
 1.Created the _**Malimali_** project.<br>

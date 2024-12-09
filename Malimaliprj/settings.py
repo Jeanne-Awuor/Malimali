@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
-    'cart'
+    'cart',
+    'chat',
+    'channels'
+
 
 ]
 
@@ -53,6 +56,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Malimaliprj.urls'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
 
 TEMPLATES = [
     {
@@ -70,8 +83,11 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATES_DEBUG = True
+
 WSGI_APPLICATION = 'Malimaliprj.wsgi.application'
 
+ASGI_APPLICATION = "Malimaliprj.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
