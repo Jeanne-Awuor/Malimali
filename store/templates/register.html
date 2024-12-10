@@ -2,53 +2,96 @@
 
 {% block content %}
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>About me</title>
-    </head>
-    <body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f1f3f5; /* Very light gray background */
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background:linear-gradient(135deg, #28a745, #218838); /* Subtle gradient */
+        color: #ffffff;
+    }
+
+    .container {
+        margin-top: -50px; /* Align form closer to the header */
+    }
+
+    form {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for register */
+    }
+
+    .form-control {
+        border-radius: 20px;
+        padding: 12px 18px;
+        border: 1px solid #dee2e6;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #adb5bd;
+        box-shadow: none;
+    }
+
+    button {
+        width: 100%;
+        border-radius: 30px;
+        padding: 12px;
+        font-size: 1.2rem;
+        background-color: #6c757d; /* Medium gray */
+        color: #ffffff;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #495057; /* Dark gray on hover */
+    }
+
+    .col-md-6 {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+</style>
+
+
+</head>
+<body>
+    <!-- Header Section -->
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">Register</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Register your new account</p>
+                <p class="lead fw-normal text-white-50 mb-0">Create your new account</p>
             </div>
         </div>
     </header>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="container">
 
-                <div class="col-md-6 offset-md-3">
-                    <form method="post" action="{% url 'register' %}">
-                        {% csrf_token %}
-
-                            {{ form.as_p }}
-                        <br>
-                        <br>
-                        <button type="submit" class="btn btn-secondary">Register</button>
-
-                    </form>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-                </div>
-
+    <!-- Register Form Section -->
+    <div class="container my-5">
+        <div class="col-md-6 offset-md-3">
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-secondary mt-3">Register</button>
+            </form>
         </div>
+    </div>
+</body>
+</html>
 
-
-    </body>
-    </html>
 
 {% endblock %}
