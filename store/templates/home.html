@@ -2,16 +2,17 @@
 
 {% block content %}
         <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Mali kwa Mali</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">
-                        New ,previously loved or just old<br>Exchange yours today!
-                    </p>
-                </div>
-            </div>
-        </header>
+        <header class="py-5" style="background: linear-gradient(135deg, #28a745, #218838);">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">Mali kwa Mali</h1>
+            <p class="lead fw-normal text-white-50 mb-0">
+                New, previously loved, or just old<br>Exchange yours today!
+            </p>
+        </div>
+    </div>
+</header>
+
 
         <!-- Section-->
         <section class="py-5">
@@ -30,7 +31,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ product.name }}</h5>
                                     <!-- Product price-->
-                                    ${{ product.price }}
+                                    for {{ product.price }}<br>
                                     <br>
                                     {{ product.description }}
                                 </div>

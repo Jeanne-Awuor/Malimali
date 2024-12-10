@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3e)julbeiz-cbvz)#za^r^iq7%w&1+_1j1mw^%_nrc%cnobm%q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
-    'cart',
     'chat',
     'channels'
 
@@ -77,7 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.context_processors.cart',
+
+
             ],
         },
     },

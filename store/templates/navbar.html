@@ -3,52 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+/* Navbar Styling */
+.navbar {
+    border-bottom: 1px solid #ddd;
+}
+.nav-link:hover {
+    color: #28a745 !important;
+    font-weight: bold;
+}
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+.position-relative .badge {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+}
+</style>
+
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{% url 'home' %}">Malimali</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container px-4 px-lg-5">
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold text-success" href="{% url 'home' %}">
+            <i class="fa-solid fa-cart-shopping"></i> MaliMali
+        </a>
 
-                        {% if user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log out</a></li>
-                        {% else  %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
+        <!-- Toggler for mobile view -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                             <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
-                        {% endif %}
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <!-- Home Link -->
+                <li class="nav-item">
+                    <a class="nav-link active fw-semibold" aria-current="page" href="{% url 'home' %}">
+                        <i class="fa-solid fa-house text-success"></i> Home
+                    </a>
+                </li>
 
+                <!-- About Link -->
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="{% url 'about' %}">
+                        <i class="fa-solid fa-info-circle text-success"></i> About
+                    </a>
+                </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'home' %}">All Products</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{% url 'Category' 'footwear' %}">Footwear</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Category' 'Storage' %}">Storage</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Category' 'Plasticwear' %}">Plasticware</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Category' 'Electronics' %}">Electronics</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Category' 'Utensils' %}">Utensils</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Category' 'Clothes' %}">Clothes</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <a href="{% url 'cart_summary' %}" class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                <!-- Authentication Links -->
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold text-danger" href="{% url 'logout' %}">
+                            <i class="fa-solid fa-sign-out-alt"></i> Log out
                         </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold text-primary" href="{% url 'login' %}">
+                            <i class="fa-solid fa-sign-in-alt"></i> Log in
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold text-success" href="{% url 'register' %}">
+                            <i class="fa-solid fa-user-plus"></i> Register
+                        </a>
+                    </li>
+                {% endif %}
 
+                <!-- Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-semibold" id="navbarDropdown" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-list text-success"></i> Categories
+                    </a>
+                    <ul class="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'home' %}">All Products</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'Category' 'footwear' %}">Footwear</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Category' 'Storage' %}">Storage</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Category' 'Plasticwear' %}">Plasticware</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Category' 'Electronics' %}">Electronics</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Category' 'Utensils' %}">Utensils</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Category' 'Clothes' %}">Clothes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-
-                    </form>
-                </div>
-            </div>
-        </nav>
 </body>
 </html>

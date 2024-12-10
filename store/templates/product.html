@@ -6,54 +6,108 @@
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>About me</title>
+        <title>Product page</title>
+        <style>
+/* Card Shadow */
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+/* Image Hover Effect */
+.product-img {
+    transition: transform 0.3s ease;
+    object-fit: cover;
+    max-height: 250px;
+}
+.product-img:hover {
+    transform: scale(1.05);
+    border: 2px solid #28a745;
+}
+
+/* Buttons */
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+.btn-danger:hover {
+    background-color: #b02a37;
+}
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Chat Section */
+#chat-log {
+    background-color: #f9f9f9;
+}
+#chat-message-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+</style>
+
     </head>
     <body>
-    <div class="container">
-        <br>
-        <div class="card mb-3" >
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="..." style="max-height: 200px; object-fit: cover;">
+ <div class="container">
+    <br>
+    <div class="card mb-3 shadow-lg">
+        <div class="row g-0">
+            <!-- Product Image -->
+            <div class="col-md-4">
+                <img src="{{ product.image.url }}" class="img-fluid rounded-start product-img" alt="{{ product.name }}">
+            </div>
 
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">{{ product.description }}</p>
-                        <p>Price : {{ product.price }}</p>
-                        <br>
-                        <button href="{% url 'home' %}" class="btn-btn-secondary">Back</button>
-                        <button type="button" value="{{ product.id }}" id="add-cart" class= "btn-btn-secondary" > Add to cart</button>
+            <!-- Product Details -->
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="fw-bold text-success">In exchange for {{ product.price }}</p>
+                    <br>
+
+                    <!-- Buttons -->
+                    <div class="d-flex">
+                        <a href="{% url 'home' %}" class="btn btn-danger me-3">Back</a>
+                        <a href="{% url 'order_confirmation' product.id %}" class="btn btn-primary">Order Now</a>
+                    </div>
+
+                    <!-- Chat Section -->
+                    <div class="mt-4">
+                        <h4 class="fw-bold text-success">Chat About This Product</h4>
+                        <div id="chat-log" class="border rounded p-3 mb-3 bg-light"
+                             style="height: 150px; overflow-y: scroll;"></div>
+                        <textarea id="chat-message-input" class="form-control mb-2" rows="3"
+                                  placeholder="Type your message"></textarea>
+                        <button id="chat-message-submit" class="btn btn-primary">Send</button>
                     </div>
                 </div>
             </div>
         </div>
-        <br><br><br>
     </div>
+</div>
+
     <script>
-{#    Check if button is pressed#}
-    $(document).on('click','#add-cart',function(e){
-        e.preventDefault();
-        $.ajax({
-            type : 'post',
-            url : '{% url 'cart_add'%}',
-            data :{
-                product_id : $('#add-cart').val(),
-                csrfmiddlewaretoken : '{{ csrf_token }}',
-                action : 'post'
-            },
-            success: function (json){
-                console.log(json)
-            },
+        const roomName = "{{ room_name }}";
+        const chatSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+        );
 
-             error:function (xhr,errmsg,err){
+        chatSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').innerHTML += '<div>' + data.message + '</div>';
+        };
 
-             }
-            }
-
-        )
-    });
+        document.querySelector('#chat-message-submit').onclick = function () {
+            const messageInput = document.querySelector('#chat-message-input');
+            const message = messageInput.value;
+            chatSocket.send(JSON.stringify({'message': message}));
+            messageInput.value = '';
+        };
 
 
     </script>

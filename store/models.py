@@ -1,4 +1,5 @@
 from conda.common.configuration import CustomValidationError
+from dask.dataframe.multi import required
 from django.db import models
 import datetime
 # Create your models here.
@@ -29,7 +30,7 @@ class Customer(models.Model):
 #Products
 class Product(models.Model):
     name = models.CharField(max_length=50)
-    price = models.FloatField(default=0.0)
+    price = models.CharField(max_length=250,null=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,default=1)
     description = models.TextField(max_length=250,default='',blank=True,null=True)
     image = models.ImageField(upload_to='uploads/products/')

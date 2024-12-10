@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from param.ipython import message
 
 from .models import Product,Category
@@ -9,11 +9,27 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from django import forms
-
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 
 # Create your views here.
+def order_success(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'order_success.html', {'product': product})
+
+
+def complete_order(request, product_id):
+    if request.method == 'POST':
+        product = get_object_or_404(Product, id=product_id)
+        # Here, you can add order logic, e.g., save to an Order model.
+        # For now, we simply redirect to a success page.
+        return HttpResponseRedirect(reverse('order_success', args=[product_id]))
+
+def order_confirmation(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'order_confirmation.html', {'product': product})
 
 def category(request,categ):
     #replace hyphens with spaces
@@ -32,8 +48,10 @@ def category(request,categ):
 
 def product(request,pk):
     product = Product.objects.get(pk=pk)
-    return render(request, 'product.html', {'product': product})
-
+    return render(request, 'product.html', {
+        'product': product,
+        'room_name': f'product_{product.id}'
+    })
 
 def home(request):
     products = Product.objects.all()
